@@ -28,5 +28,5 @@ int main() {
   });
   const char *port_env = std::getenv("PORT");
   int port = port_env ? std::atoi(port_env) :18000;
-  app.port(18000).run();
+  app.port(18000).multithreaded().run();
 }
