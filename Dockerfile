@@ -37,7 +37,7 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 # Copy compiled binary and assets
-COPY --from=builder /app/build/webserver .
+COPY --from=builder /app/build/myweb .
 COPY templates/ templates/
 COPY static/ static/
 
@@ -45,4 +45,4 @@ COPY static/ static/
 EXPOSE $PORT
 
 # Run the application
-CMD ["./myapp"]
+CMD ["./myweb"]
