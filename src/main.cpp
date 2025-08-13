@@ -27,6 +27,6 @@ int main() {
     return projectpage.render();
   });
   const char *port_env = std::getenv("PORT");
-  int port = port_env ? std::atoi(port_env) :18000;
-  app.port(18000).multithreaded().run();
+  int port = port_env ? std::atoi(port_env):18000;
+  app.port(port).multithreaded().run();
 }

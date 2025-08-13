@@ -1,7 +1,6 @@
-# Multi-stage build for Railway deployment
-FROM ubuntu:22.04 AS builder
+FROM ubuntu:22.04
 
-# Install build dependencies
+# Install dependencies
 RUN apt-get update && apt-get install -y \
     g++ \
     cmake \
@@ -13,36 +12,14 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /app
 
-# Copy your project files
-COPY CMakeLists.txt .
-COPY include/ include/
-COPY src/ src/
+# Copy everything
+COPY . .
 
-# Build using CMake
-RUN mkdir build && \
-    cd build && \
-    cmake .. && \
-    make -j$(nproc)
+# Build with your existing CMakeLists.txt
+RUN mkdir -p build && cd build && cmake .. && make
 
-# Production stage
-FROM ubuntu:22.04
-
-# Install runtime dependencies only
-RUN apt-get update && apt-get install -y \
-    libboost-system1.74.0 \
-    libboost-filesystem1.74.0 \
-    libasio-dev \
-    && rm -rf /var/lib/apt/lists/*
-
-WORKDIR /app
-
-# Copy compiled binary and assets
-COPY --from=builder /app/build/myweb .
-COPY templates/ templates/
-COPY static/ static/
-
-# Expose port (Railway will set the PORT env var)
+# Expose port (Railway sets the PORT environment variable)
 EXPOSE $PORT
 
-# Run the application
-CMD ["./myweb"]
+# Run your executable
+CMD  ./build/myweb
