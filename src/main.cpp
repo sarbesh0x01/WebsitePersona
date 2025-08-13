@@ -6,9 +6,9 @@ int main() {
   // variable to store a data  //
   // To Optimize load essentioal tings to memory
 
-  CROW_ROUTE(app, "/static/<path>")
+  CROW_ROUTE(app, "/assets/<path>")
   ([](const crow::request &req, crow::response &res, std::string path) {
-    res.set_static_file_info_unsafe("static/" + path);
+    res.set_static_file_info_unsafe("assets/" + path);
     res.end();
   });
 
