@@ -16,7 +16,7 @@ WORKDIR /app
 COPY . .
 
 # Build with your existing CMakeLists.txt
-RUN mkdir -p build && cd build && cmake .. && make
+RUN mkdir -p build && cd build && cmake .. && cmake --build .
 
 # Expose port (Railway sets the PORT environment variable)
 EXPOSE $PORT
