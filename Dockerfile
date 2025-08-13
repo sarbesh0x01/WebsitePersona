@@ -45,4 +45,4 @@ COPY static/ static/
 EXPOSE $PORT
 
 # Run the application
-CMD ["./webserver"]
+CMD ["./myapp"]
