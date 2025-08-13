@@ -1,4 +1,4 @@
-# Multi-stage build for smaller final image
+# Multi-stage build for Railway deployment
 FROM ubuntu:22.04 AS builder
 
 # Install build dependencies
@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     cmake \
     make \
     libboost-all-dev \
+    libasio-dev \
     pkg-config \
     && rm -rf /var/lib/apt/lists/*
 
@@ -30,6 +31,7 @@ FROM ubuntu:22.04
 RUN apt-get update && apt-get install -y \
     libboost-system1.74.0 \
     libboost-filesystem1.74.0 \
+    libasio-dev \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
