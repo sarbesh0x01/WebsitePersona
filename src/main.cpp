@@ -16,7 +16,6 @@ int main() {
     res.end();
   });
 
-
   CROW_ROUTE(app, "/js/<path>")
   ([](const crow::request &req, crow::response &res, std::string path) {
     res.set_static_file_info_unsafe("js/" + path);
@@ -30,7 +29,7 @@ int main() {
     res.add_header("Content-Type", "application/wasm");
     res.add_header("Cross-Origin-Embedder-Policy", "require-corp");
 
-        res.add_header("Cross-Origin-Embedder-Policy", "same-origin");
+    res.add_header("Cross-Origin-Embedder-Policy", "same-origin");
     res.end();
   });
 
@@ -46,16 +45,13 @@ int main() {
     return projectpage.render();
   });
 
- CROW_ROUTE(app, "/pong")
- ([]() {
-   auto pongpage = crow::mustache::load("pong.html");
-   return pongpage.render();
- });
-
+  CROW_ROUTE(app, "/pong")
+  ([]() {
+    auto pongpage = crow::mustache::load("pong.html");
+    return pongpage.render();
+  });
 
   const char *port_env = std::getenv("PORT");
-  int port = port_env ? std::atoi(port_env):18000;
+  int port = port_env ? std::atoi(port_env) : 18000;
   app.port(port).multithreaded().run();
- 
-
 }
