@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/satvara/Projects/WebsitePersona/build",
+  "command": "/usr/bin/c++  -I/home/satvara/Projects/WebsitePersona/include -std=gnu++17 -o CMakeFiles/myweb.dir/src/main.cpp.o -c /home/satvara/Projects/WebsitePersona/src/main.cpp",
+  "file": "/home/satvara/Projects/WebsitePersona/src/main.cpp",
+  "output": "CMakeFiles/myweb.dir/src/main.cpp.o"
+}
+]

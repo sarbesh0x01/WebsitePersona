@@ -50,6 +50,11 @@ int main() {
     auto pongpage = crow::mustache::load("pong.html");
     return pongpage.render();
   });
+  // will need this later
+  //  CROW_ROUTE(app, url)([]() {
+  //      auto studiopage = crow::mustache::load("");
+  //  return poongpage.render();
+  //   })
 
   const char *port_env = std::getenv("PORT");
   int port = port_env ? std::atoi(port_env) : 18000;
